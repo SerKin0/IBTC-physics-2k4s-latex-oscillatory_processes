@@ -14,7 +14,7 @@
 			\draw (9, 2) to[rmeter, l_={\normalsize $E(t)$}, label distance=0.08cm] (9, 4);
 		\end{tikzpicture}
 	}
-	\caption{Схема}
+	\caption{Колебательный контур}
 	\label{fig:th:1}
 \end{figure}
 
@@ -146,14 +146,106 @@
 
 Процесс, описываемый формулой \cref{eq:th:9}, называется апериодическим и качественно изображен на \cref{fig:3}.
 
-Условие $\delta = \omega_0$ определяет критический режим колебаний, 
+Условие $\delta = \omega_0$ определяет критический режим колебаний, а соответствующие этому условию сопротивление называется критическим сопротивлением контура: \[R_\text{кр} = 2 \sqrt{\frac{L}{C}}\]
+
+На практике используется также характеристическое (волновое) сопротивление контура:
+\[\rho = \sqrt{\frac{L}{C}}\]
+
+\subsubsection{Декремент затухания. Добротность}
+
+Логарифмическим декрементом затухания $d$ называется логарифм отношения значений тока $I$ в контуре в двух последовательных ($n$-ом и $(n+1)$-ом) максимумах:
+\begin{align} \label{eq:th:11}
+	d = \ln \left(\frac{q_n}{q_{n+1}}\right) = \ln \left(\frac{I_n}{I_{n+1}}\right) = \delta T
+\end{align}
+
+Поскольку, как видно из выражений \cref{eq:th:9,eq:th:9a}, $\delta$ есть величина, обратная промежутку времени $\tau$, за которое амплитуда колебаний спадает в $e$ раз, то можно определить число колебаний $N$, совершившихся за это время:
+\[N = \frac{\tau}{T} = \frac{1}{\delta T} = \frac{1}{d}\]
+
+Таким образом, логарифмический декремент затухания $d$ есть величина, обратная числу колебаний $N$, в течение которых амплитуда колебаний уменьшается в $e$ раз.
+
+Часто для характеристики затухания удобнее использовать не $N$, а величину в $\pi$ раз большую -- добротность контура $Q = \pi N$.
+
+При малом затухании $(\delta \ll \omega_0)$ частота собственных колебаний \[\omega_S = \sqrt{\omega_0^2 - \delta^2} \approx \omega_0\]
+
+При этом, с использованием выражений для $\omega_0$ и $\delta$, добротность контура и его логарифмический декремент затухания можно выразить через параметры контура $L, C, R$ следующим образом:
+\begin{gather}
+	\label{eq:th:12} d = \delta T \cong \frac{2\pi}{\omega_0} \delta = \frac{\pi R}{\omega_0 L} = \pi R C \omega_0 = \pi R \sqrt{\frac{C}{L}}, \\
+	\label{eq:th:13} Q = \pi N = \frac{\pi}{d} \cong \frac{\omega_0 L}{R} = \frac{1}{RC \omega_0} = \frac{1}{R} \sqrt{\frac{L}{C}}
+\end{gather}
+
+Необходимо иметь в виду, что во всех выражениях под $R$ следует понимать сопротивление, эквивалентное всем потерям в контуре. Дополнительные потери при прохождении переменного тока могут быть вызваны гистерезисом и токами Фуко в сердечнике катушки индуктивности, токами утечки и процессами поляризации в диэлектрике конденсатора.
+
+\subsubsection{Фазовая плоскость}
+
+Процессы к колебательном контуре удобно изображать на так называемой фазовой плоскости, где по оси абсцисс откладывают заряд конденсатора $q$, а по оси ординат величину, пропорциональную току, например $q/\omega_0$ (чтобы отложить вдоль осей величины одной размерности и одного порядка величины). Каждому состоянии колебательного контура, характеризуемому мгновенными значениями $q$ и $\dot{q}$, соответствует точка на фазовой плоскости (изображающая точка). Изменение состояния вызывает перемещение изображающей точки по фазовой плоскости. Линия, описываемая изображающей точкой, называется \textbf{фазовой траекторией}. Совокупности движений с разными начальными условиями соответствует семейство фазовых с общим центром в начале координат. Свободные затухающие колебания в контуре (при $\delta < \omega_0$) изображаются фазовыми траекториями в виде скручивающихся к началу координат спиралей, причем скручивание идет тем быстрее, чем больше коэффициент затухания. Апериодическому затухающему процессу соответствуют фазовые траектории, сходящиеся к началу координат. 
 
 \subsection{Вынужденные колебания в электрическом контуре}
+
+Изменение заряда конденсатора под действием внешней гармонической силы в соответствии с \cref{eq:th:6} описывается уравнением:
+\begin{align} \label{eq:th:14}
+	\ddot{q} + 2 \delta \dot{q} + \omega_0^2 q = F_1 \cos (\omega t),
+\end{align}
+где $\omega$ -- циклическая частота колебаний вынуждающей силы. Решение уравнения \cref{eq:th:14} и решение аналогично уравнения для тока в контуре, соответствующие установившимся режиму имеют вид: 
+\begin{gather}
+	\label{eq:th:15} q(t) = q_0 (\omega) \cos (\omega t + \psi_q), \\
+	\label{eq:th:15a} \tag{\ref{eq:th:15}a} I(t) = I_0(\omega) \cos (\omega t + \psi_I),
+\end{gather}
+где $q_0(\omega)$ и $I_0(\omega)$ -- амплитудные значения колебаний заряда на емкости и тока в контуре, а $\psi_q(\omega)$ и $\psi_I(\omega)$ -- имеют смысл фазового сдвига между колебаниями заряда (или тока) и колебаниями внешней ЭДС. Для того, чтобы найти амплитуду и фазу установившихся колебаний воспользуемся методом векторных диаграмм.
+
 \subsubsection*{Метод векторных диаграмм}
 \begin{gather}
-	\label{eq:th:19} U_L = I_0 \omega L = \frac{\omega L E_0}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}\\
-	\label{eq:th:20} U_C = \frac{I_0}{\omega C} = \frac{E_0}{\omega C \sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}\\
-	\label{eq:th:21} U_R = I_0 R = \frac{E_0 R}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}
+	\label{eq:th:19} U_L = I_0 \omega L = \frac{\omega L \Epsilon_0}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}\\
+	\label{eq:th:20} U_C = \frac{I_0}{\omega C} = \frac{\Epsilon_0}{\omega C \sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}\\
+	\label{eq:th:21} U_R = I_0 R = \frac{\Epsilon_0 R}{\sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}}
 \end{gather}
 
 \subsubsection{Анализ / Вывод}
+
+Представим формулы \cref{eq:th:19,eq:th:20,eq:th:21} через переменные $Q, \omega, \omega_0$. Для этого выразим из \cref{eq:th:7,eq:th:13} параметры $Q, \omega_0$:
+\begin{align*}
+	LC = \frac{1}{\omega^2_0} && \frac{L}{R} = \frac{Q}{\omega_0} && RC = \frac{1}{\omega_0 Q}
+\end{align*}
+
+\begin{multline}
+	U_L 
+	= 
+	I_0 \omega L 
+	= 
+	\frac{\omega \Epsilon_0}{\sqrt{\frac{R^2}{L^2} + \frac{1}{L^2}\left(\omega L - \frac{1}{\omega C}\right)^2}} 
+	= 
+	\frac{\omega \Epsilon_0}{\sqrt{\frac{R^2}{L^2} + \left(\omega - \frac{1}{\omega LC}\right)^2}}
+	=\\=
+	\frac{\omega \Epsilon_0}{\sqrt{\frac{\omega_0^2}{Q^2} + \left(\omega - \frac{\omega_0^2}{\omega}\right)^2}}
+	=
+	\frac{\omega \Epsilon_0}{\sqrt{\frac{\omega_0^2}{Q^2} + \frac{(\omega^2 - \omega_0^2)^2}{\omega^2}}} 
+	= 
+	\frac{\omega^2Q \Epsilon_0}{\sqrt{\omega_0^2 \omega^2 + Q^2 (\omega^2 - \omega_0^2)^2}}
+\end{multline}
+\begin{multline}
+	U_C 
+	= 
+	\frac{\Epsilon_0}{\sqrt{\omega^2 C^2 R^2 + \left(\omega^2 LC - 1\right)^2}}
+	=
+	\frac{\Epsilon_0}{\sqrt{\frac{\omega^2}{\omega_0^2 Q^2} + \left(\frac{\omega^2}{\omega_0^2} - 1\right)^2}}
+	=\\=
+	\frac{\omega_0^2 Q \Epsilon_0}{\sqrt{\omega^2 \omega_0^2 + Q^2 (\omega^2 - \omega_0^2)^2}}
+\end{multline}
+\begin{multline}
+	U_R 
+	= 
+	\frac{\Epsilon_0}{\sqrt{1 + \frac{1}{R^2}\left(\omega L - \frac{1}{\omega C}\right)^2}}
+	=
+	\frac{\Epsilon_0}{\sqrt{1 + \left(\omega \frac{L}{R} - \frac{1}{\omega RC}\right)^2}}
+	=
+	\frac{\Epsilon_0}{\sqrt{1 + \left(\frac{\omega Q}{\omega_0} - \frac{\omega_0 Q}{\omega }\right)^2}}
+	=\\=
+	\frac{\Epsilon_0}{\sqrt{1 + Q^2\frac{(\omega^2 - \omega_0^2)^2}{\omega^2 \omega_0^2}}}
+	=
+	\frac{ \omega \omega_0 \Epsilon_0}{\sqrt{\omega^2 \omega_0^2 + Q^2 (\omega^2 - \omega_0^2)^2}}
+\end{multline}
+
+Для нахождения максимумов функций
+
+
+
+
